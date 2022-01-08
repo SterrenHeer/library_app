@@ -19,7 +19,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    queryset = Book.objects.all()[:5]
+    paginate_by = 10
 
 
 class BookDetailView(generic.DetailView):
