@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre, Language
+from django.views import generic
 
 
 def index(request):
@@ -14,3 +15,12 @@ def index(request):
         'num_authors': num_authors
     }
     return render(request, 'catalog/index.html', context)
+
+
+class BookListView(generic.ListView):
+    model = Book
+    queryset = Book.objects.all()[:5]
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
